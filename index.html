@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="home-screen" id="homeScreen">
+      <div id="left-container">
+        <div id="menu-image">
+          <img src="./assets/menu_logo.png" alt="Title Image" width="100%" />
+        </div>
+        <div id="menu-image">
+          <img src="./assets/splash_logo.png" alt="Title Image" width="100%" />
+        </div>
+      </div>
+
+      <!-- ----------------------------- Title Menu ------------------------------ -->
+      <div id="title-menu">
+        <div>
+          <button class="btn-audio" id="btn-start-game">Start Game</button>
+        </div>
+        <div>
+          <button class="btn-audio" id="btn-level">Level</button>
+        </div>
+      </div>
+
+      <div class="level" id="level">
+        <img
+          id="left_control"
+          src="./assets/control_left.png"
+          alt="left control"
+        />
+        <img class="level-image" src="./assets/1.jpg" alt="Level 1" id="one" />
+
+        <img class="level-image" src="./assets/2.jpg" alt="Level 2" id="two" />
+        <img
+          class="level-image"
+          src="./assets/3.jpg"
+          alt="Level 3"
+          id="three"
+        />
+      </div>
+    </section>
+    <img id="levelFailedImage" alt="Level Failed" />
+    <canvas id="canvas"></canvas>
+    <script src="constant.js" defer></script>
+    <script src="global.js" defer></script>
+    <script src="input.js" defer></script>
+    <script src="utils.js" defer></script>
+    <script src="homeScreen.js" defer></script>
+    <script src="map.js" defer></script>
+    <script src="mapBlock.js" defer></script>
+    <script src="tileFunction.js" defer></script>
+    <script src="enemy.js" defer></script>
+    <script src="ball.js" defer></script>
+    <script src="Life.js" defer></script>
+    <script src="score.js" defer></script>
+    <script src="circleObstacle.js" defer></script>
+    <script src="index.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#canvas {
+  /* height: 360px;
+  width: 650px; */
+  border: 2px solid black;
+  margin: 40px auto;
+  display: block;
+  position: relative;
+  /* padding: 0;
+  margin: 0; */
+}
+
+#levelFailedImage {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  max-height: 200px;
+  z-index: 1;
+}
+
+#homeScreen {
+  background: skyblue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#left-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+#menu-image {
+  height: 150px;
+  width: 300px;
+}
+
+#btn-start-game,
+#btn-level {
+  background-color: darkred;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+#btn-start-game:hover {
+  background-color: red;
+}
+#btn-level:hover {
+  background-color: red;
+}
+
+#left_control {
+  height: 70px;
+  width: 70px;
+  margin-right: 20px;
+}
+
+/* #level-complete-message {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#level-complete-message img {
+  display: block;
+  margin: 0 auto;
+} */
+
+#level-complete-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.restart-image,
+.menu-image {
+  display: block;
+  width: 5%; /* Adjust the width based on the parent's width */
+  height: auto; /* Maintain the aspect ratio */
+  margin-top: 1%; /* Add spacing based on the parent's width */
+}
+
+/* Optional: Adjust styling for the main level completion image */
+#level-complete-message img {
+  width: 100%; /* Full width */
+  height: auto; /* Maintain aspect ratio */
+}
+.level {
+  display: flex;
+  gap: 10px;
+}
+.level-image {
+  height: 50px;
+  width: 50px;
+}
