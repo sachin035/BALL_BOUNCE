@@ -140,7 +140,7 @@ for (let i = 0; i < pointEllipse.length; i++) {
 function showLevelFailedImage() {
   if (failureCount < maxFailures) {
     console.log("failed");
-    levelFailedImage.src = "./assets/pop.png";
+    levelFailedImage.src = "../assets/pop.png";
     levelFailedImage.style.display = "block";
     // console.log("before:", failureCount);
     failureCount++;
@@ -148,7 +148,7 @@ function showLevelFailedImage() {
     score.updateScore = 0;
     setTimeout(resetGame, 2000);
   } else if (failureCount >= maxFailures) {
-    levelFailedImage.src = "./assets/level_failed.png";
+    levelFailedImage.src = "../assets/level_failed.png";
     levelFailedImage.style.display = "block";
 
     return;
@@ -179,6 +179,7 @@ function resetGame() {
   //   CHECKPOINT.pop(); // Remove the last checkpoint from the array
   // } else {
   console.log("sacnajn");
+  levelFailedImage.style.display = "none";
   tileInitialize(selectedMap);
   game();
   // (ball.position.x = GLOBAL.boundaries[2].position.x + Tile.width / 2),
@@ -186,7 +187,6 @@ function resetGame() {
 
   // (GLOBAL.boundaries.position.x=tileIndices[0].)
   // console.log(tileIndices[0].x);
-  levelFailedImage.style.display = "none";
 }
 // }
 
@@ -232,7 +232,7 @@ function showLevelCompletedImage() {
   // });
 
   const menuImage = document.createElement("img");
-  menuImage.src = "./assets/menu.png";
+  menuImage.src = "../assets/menu.png";
   menuImage.alt = "Menu";
   menuImage.classList.add("menu-image");
   levelCompleteDiv.appendChild(menuImage);
@@ -240,7 +240,7 @@ function showLevelCompletedImage() {
 
   restartImage.addEventListener("click", function () {
     console.log("listened");
-    tileInitialize();
+    tileInitialize(selectedMap);
     levelCompleteDiv.style.display = "none";
   });
 }
