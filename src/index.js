@@ -6,6 +6,8 @@ let levelFailed = false;
 const levelOne = document.getElementById("one");
 const levelTwo = document.getElementById("two");
 const startGame = document.getElementById("btn-start-game");
+const audioScreen = document.getElementById("audio-screen");
+const audioGameover = document.getElementById("audio-gameover");
 const life = new Life();
 const score = new Score();
 let selectedMap = null;
@@ -16,30 +18,32 @@ function clearCanvas() {
 // const levelFailedImage = document.getElementById("levelFailedImage");
 
 // console.log(GLOBAL.boundaries);
-
 startGame.addEventListener("click", function () {
   selectedMap = map;
   tileInitialize(selectedMap);
-  console.log(map);
-  // console.log(GLOBAL.boundaries);
   game();
+  audioScreen.play();
+
+  console.log();
 });
 
 levelOne.addEventListener("click", function () {
   selectedMap = map;
   tileInitialize(selectedMap);
   game();
+  audioScreen.play();
 });
 
 levelTwo.addEventListener("click", function () {
   selectedMap = map1;
   tileInitialize(selectedMap);
   game();
+  audioScreen.play();
 });
 
-console.log(GLOBAL.boundaries);
 // tileInitialize();
 function game() {
+  levelFailedImage.style.display = "none";
   let initialBallPosition;
 
   // Set initial position based on the selected map
@@ -64,15 +68,17 @@ function game() {
     },
     image: createImage("./assets/small_ball.png"),
   });
-  const ellipseObstacle = new EllipseObstacle({
-    position: {
-      x: GLOBAL.boundaries[8].position.x + Tile.width / 2,
-      y: GLOBAL.boundaries[275].position.y + Tile.width / 2,
-    },
-    radiusX: 25,
-    radiusY: 45,
-    lineWidth: 5,
-  });
+  // const ellipseObstacle = new EllipseObstacle({
+  //   position: {
+  //     x: GLOBAL.boundaries[8].position.x + Tile.width / 2,
+  //     y: GLOBAL.boundaries[275].position.y + Tile.width / 2,
+  //   },
+  //   radiusX: 25,
+  //   radiusY: 45,
+  //   lineWidth: 5,
+  // });
+
+  console.log(ball.position);
   const life = new Life();
   const score = new Score();
   function animate() {
@@ -217,13 +223,15 @@ function game() {
           levelFailed = true;
         }
       }
-      if (ellipseDetection(ball, pointEllipse)) {
-        console.log("circle collide");
-      }
+      // console.log(pointEllipse);
       if (row.objectType === "ellipseObstacle") {
-        // console.log("absdkja");
-        if (ellipseDetection(ball, pointEllipse)) {
-          console.log("circle collide");
+        // console.log(pointEllipse);
+        for (let i = 0; i < pointEllipse.length; i++) {
+          if (ellipseDetection(ball, pointEllipse[i])) {
+            // console.log("kajnfkjab");
+
+            return;
+          }
         }
       }
       if (row.objectType === "levelCompleted") {

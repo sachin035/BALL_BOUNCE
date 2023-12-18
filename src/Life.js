@@ -14,8 +14,9 @@ class Life {
     ctx.strokeStyle = "black";
     ctx.fillText("BALL LIFE :", 0, 0);
     ctx.strokeText("BALL LIFE :", 10, 30);
-
+    // console.log(this.ballRemain);
     if (this.ballRemain === 3 || this.ballRemain > 3) {
+      console.log("three");
       this.draw1(ctx);
       this.draw2(ctx);
       this.draw3(ctx);

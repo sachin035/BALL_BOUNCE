@@ -28,18 +28,21 @@ function collisionDetection(ball, row) {
       if (indexToRemove !== -1) {
         GLOBAL.boundaries.splice(indexToRemove, 1);
       }
-
+      console.log("count", BALL_COUNT);
       score.updateScore += 100;
-      life.ballRemain = BALL_COUNT + 1;
+      BALL_COUNT++;
+      life.ballRemain = BALL_COUNT;
+      console.log(life.ballRemain, BALL_COUNT);
+      // life.update(ctx);
     }
     if (row.objectType === "checkPoint") {
       // console.log(row.position.x);
       // console.log(row.position.y);
-      const sachin = GLOBAL.boundaries.indexOf(row);
-      console.log({ sachin });
-      const checkpointPosition = { x: sachin, y: row.position.y };
+      const checkpointX = GLOBAL.boundaries.indexOf(row);
+
+      const checkpointPosition = { x: checkpointX, y: row.position.y };
       CHECKPOINT.push(checkpointPosition);
-      // console.log(CHECKPOINT);
+      console.log(CHECKPOINT);
 
       // checkpointPosition = row;
       // Remove the tile from the array
@@ -64,19 +67,18 @@ function objectDetection(a, b) {
 }
 const pointEllipse = [];
 
-// const pointCircle = [];
 function boundingPoint() {
   for (let theta = 0; theta <= 2 * Math.PI; theta += 0.0873) {
-    const boundPointX = ellipse.position.x + ellipse.radiusX * Math.cos(theta);
-    const boundPointY = ellipse.position.y + ellipse.radiusY * Math.sin(theta);
+    // const boundPointX = ellipse.position.x + ellipse.radiusX * Math.cos(theta);
+    // const boundPointY = ellipse.position.y + ellipse.radiusY * Math.sin(theta);
+    const boundPointX = 400 + 15 * Math.cos(theta);
+    const boundPointY = 300 + 35 * Math.sin(theta);
+
     pointEllipse.push({ boundPointX, boundPointY });
   }
-  // for (let theta = 0; theta <= 2 * Math.PI; theta += 0.0873) {
-  //   const circlePointX = circle.position.x + circle.radius * Math.cos(theta);
-  //   const circlePointY = circle.position.y + circle.radius * Math.sin(theta);
-  //   pointCircle.push({ circlePointX, circlePointY });
-  // }
 }
+boundingPoint();
+// console.log(pointEllipse);
 
 function ellipseDetection(circle, point) {
   let dx = point.boundPointX - circle.position.x;
@@ -89,68 +91,24 @@ function ellipseDetection(circle, point) {
 // console.log(pointEllipse);
 // console.log(pointCircle);
 
-for (let i = 0; i < pointEllipse.length; i++) {
-  if (isPointInPolygon(pointEllipse[i], pointCircle.points)) {
-    // life.dead();
-    console.log("kajnfkjab");
-    // break;s
-  }
-}
-// isPointInPolygon(pointEllipse, pointCircle);
-
-// function ellipseDetection(circle, ellipse) {
-//   console.log(GLOBAL.boundaries);
-//   const dx = circle.position.x - ellipse.position.x;
-//   const dy = circle.position.y - ellipse.position.y;
-//   const angle = Math.atan2(-dy, dx);
-//   // const { x, y } = GLOBAL.boundaries[319].pointFromAngle(angle);
-//   const { x, y } = GLOBAL.boundaries[319].pointFromAngle(angle);
-//   const distance = Math.hypot(x - circle.position.x, y - circle.position.y);
-//   return [distance <= circle.radius, { x, y }];
-// }
-
-// pointFromAngle(a) {
-//   const c = Math.cos(a);
-//   const s = Math.sin(a);
-//   const ta = s / c;
-//   const tt = (ta * ellipse.radiusX / ellipse.radiusY);
-//   const d = 1.0 / Math.sqrt(1.0 + tt * tt);
-//   const x = ellipse.position.x + Math.sign(c) *  ellipse.radiusX * d;
-//   const y = ellipse.position.x- Math.sign(s) * ellipse.radiusY* tt * d;
-//   return { x, y };
-// }
-// function ellipseDetection(ball, ellipse) {
-//   // Calculate the distance between the ball and the center of the ellipse
-//   const dx = ball.position.x - ellipse.position.x;
-//   const dy = ball.position.y - ellipse.position.y;
-
-//   // Normalize the distances to account for the ellipse's dimensions
-//   const normalizedX = dx / ellipse.radiusX;
-//   const normalizedY = dy / ellipse.radiusY;
-
-//   // Calculate the distance using the formula for an ellipse
-//   const distance = Math.sqrt(
-//     normalizedX * normalizedX + normalizedY * normalizedY
-//   );
-
-//   // Check if the distance is less than or equal to the sum of the radii
-//   return distance <= ball.radius / ellipse.radiusX + 1; // Adding 1 for a little buffer
-// }
-
 function showLevelFailedImage() {
   if (failureCount < maxFailures) {
     console.log("failed");
     levelFailedImage.src = "./assets/pop.png";
     levelFailedImage.style.display = "block";
+
     // console.log("before:", failureCount);
     failureCount++;
     // console.log("after:", failureCount);
     score.updateScore = 0;
+    audioScreen.pause();
+    audioGameover.play();
     setTimeout(resetGame, 2000);
   } else if (failureCount >= maxFailures) {
     levelFailedImage.src = "./assets/level_failed.png";
     levelFailedImage.style.display = "block";
-
+    audioScreen.pause();
+    audioGameover.play();
     return;
   }
 
@@ -159,11 +117,14 @@ function showLevelFailedImage() {
     // console.log(BALL_COUNT);
     life.ballRemain = BALL_COUNT;
   }
+
+  // life.update(ctx);
   // ball.velocity.x = 0;
   // ball.velocity.y = 0;
 }
 
 function resetGame() {
+  audioGameover.pause();
   // if (CHECKPOINT.length > 0) {
   //   const lastCheckpoint = CHECKPOINT[CHECKPOINT.length - 1];
   //   console.log(lastCheckpoint);
@@ -176,12 +137,13 @@ function resetGame() {
   //   // ball.distanceTravel = 0;
 
   //   levelFailedImage.style.display = "none";
-  //   CHECKPOINT.pop(); // Remove the last checkpoint from the array
+  //   CHECKPOINT.pop();
   // } else {
-  // console.log("sacnajn");
+
   levelFailedImage.style.display = "none";
   tileInitialize(selectedMap);
   game();
+  audioScreen.play();
   // (ball.position.x = GLOBAL.boundaries[2].position.x + Tile.width / 2),
   //   (ball.position.y = GLOBAL.boundaries[116].position.y + Tile.width / 2);
 

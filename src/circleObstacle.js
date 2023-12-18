@@ -5,7 +5,7 @@ class EllipseObstacle {
     this.radiusY = radiusY;
     this.lineWidth = lineWidth;
     this.objectType = objectType;
-    console.log(this);
+    // console.log(this);
   }
 
   draw(ctx, rotationAngle) {

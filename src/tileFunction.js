@@ -1,7 +1,6 @@
 const tileIndices = [];
 
 function tileInitialize(selectedMap) {
-  console.log(selectedMap);
   clearCanvas();
   GLOBAL.boundaries = [];
   levelFailed = false;
@@ -25,11 +24,11 @@ function tileInitialize(selectedMap) {
       //j>checkpointcoloumn-2;
       //continue
 
-      // if (column === objectMapping.checkPoint) {
-      //   checkPointcolumn = j;
+      if (column === objectMapping.checkPoint) {
+        checkPointcolumn = j;
 
-      //   console.log(j);
-      // }
+        console.log(j);
+      }
       switch (column) {
         case objectMapping.block:
           GLOBAL.boundaries.push(
@@ -59,19 +58,6 @@ function tileInitialize(selectedMap) {
             })
           );
           break;
-
-        // case 0:
-        //   boundaries.push(
-        //     new Tile({
-        //       position: {
-        //         x: Tile.width * j,
-        //         y: Tile.height * i,
-        //       },
-        //       // color: "skyblue",
-        //       image: createImage("./assets/"),
-        //     })
-        //   );
-        //   break;
 
         case objectMapping.fireObstcale:
           GLOBAL.boundaries.push(
@@ -119,7 +105,6 @@ function tileInitialize(selectedMap) {
               image: createImage("./assets/enemy.png"),
             })
           );
-          // alert("enemy psuesh");
           break;
 
         case objectMapping.sizeIncreaser:
@@ -205,23 +190,22 @@ function tileInitialize(selectedMap) {
             })
           );
           break;
-        // case objectMapping.ellipseObstacle:
-        //   GLOBAL.boundaries.push(
-        //     new EllipseObstacle({
-        //       position: {
-        //         x: Tile.width * j,
-        //         y: Tile.height * i,
-        //       },
-        //       radiusX: 25,
-        //       radiusY: 35,
-        //       lineWidth: 8,
-        //       objectType: "ellipseObstacle",
-        //       // image: createImage("./assets/levelComplete.png"),
-        //     })
-        //   );
-        //   break;
+        case objectMapping.ellipseObstacle:
+          GLOBAL.boundaries.push(
+            new EllipseObstacle({
+              position: {
+                x: Tile.width * j,
+                y: Tile.height * i,
+              },
+              radiusX: 15,
+              radiusY: 50,
+              lineWidth: 8,
+              objectType: "ellipseObstacle",
+              // image: createImage("./assets/levelComplete.png"),
+            })
+          );
+          break;
       }
     });
   });
 }
-console.log(GLOBAL.boundaries);

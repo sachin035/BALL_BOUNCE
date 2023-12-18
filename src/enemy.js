@@ -28,8 +28,6 @@ class Enemy {
       if (entity.objectType !== "enemy" && objectDetection(this, entity)) {
         // console.log("Collision detected between enemy and other entity:");
         this.velocity.y *= -1;
-        // console.log("deteect");
-        // this.position.y += this.velocity.y;
         this.move();
       }
     });

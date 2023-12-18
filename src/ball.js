@@ -84,7 +84,6 @@ class Ball {
     this.camerabox.position.y = this.position.y - this.camerabox.height / 2;
 
     ctx.fillStyle = "rgba(0,0,255,0.2)";
-    // ctx.fillStyle = "transparent";
     ctx.fillRect(
       this.camerabox.position.x,
       this.camerabox.position.y,
