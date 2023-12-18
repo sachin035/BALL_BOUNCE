@@ -84,6 +84,7 @@ class Ball {
     this.camerabox.position.y = this.position.y - this.camerabox.height / 2;
 
     ctx.fillStyle = "rgba(0,0,255,0.2)";
+    // ctx.fillStyle = "transparent";
     ctx.fillRect(
       this.camerabox.position.x,
       this.camerabox.position.y,
@@ -136,7 +137,7 @@ class Ball {
         if (tile instanceof Tile || tile instanceof Enemy) {
           tile.velocity.x = this.velocity.x;
           tile.position.x -= tile.velocity.x;
-          console.log(tile.position.x);
+          // console.log(tile.position.x);
         }
       });
     }

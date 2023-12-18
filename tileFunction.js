@@ -1,12 +1,12 @@
 const tileIndices = [];
 
-function tileInitialize() {
-  // console.log(selectedMap);
+function tileInitialize(selectedMap) {
+  console.log(selectedMap);
   clearCanvas();
   GLOBAL.boundaries = [];
   levelFailed = false;
 
-  map.forEach((row, i) => {
+  selectedMap.forEach((row, i) => {
     // console.log(map[i].length);
     row.forEach((column, j) => {
       // const tileIndex = {

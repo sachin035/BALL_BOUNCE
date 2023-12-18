@@ -139,6 +139,7 @@ for (let i = 0; i < pointEllipse.length; i++) {
 
 function showLevelFailedImage() {
   if (failureCount < maxFailures) {
+    console.log("failed");
     levelFailedImage.src = "./assets/pop.png";
     levelFailedImage.style.display = "block";
     // console.log("before:", failureCount);
@@ -177,9 +178,11 @@ function resetGame() {
   //   levelFailedImage.style.display = "none";
   //   CHECKPOINT.pop(); // Remove the last checkpoint from the array
   // } else {
-  tileInitialize();
-  (ball.position.x = GLOBAL.boundaries[2].position.x + Tile.width / 2),
-    (ball.position.y = GLOBAL.boundaries[116].position.y + Tile.width / 2);
+  console.log("sacnajn");
+  tileInitialize(selectedMap);
+  game();
+  // (ball.position.x = GLOBAL.boundaries[2].position.x + Tile.width / 2),
+  //   (ball.position.y = GLOBAL.boundaries[116].position.y + Tile.width / 2);
 
   // (GLOBAL.boundaries.position.x=tileIndices[0].)
   // console.log(tileIndices[0].x);
