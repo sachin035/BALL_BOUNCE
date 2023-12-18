@@ -178,7 +178,7 @@ function resetGame() {
   //   levelFailedImage.style.display = "none";
   //   CHECKPOINT.pop(); // Remove the last checkpoint from the array
   // } else {
-  console.log("sacnajn");
+  // console.log("sacnajn");
   levelFailedImage.style.display = "none";
   tileInitialize(selectedMap);
   game();
@@ -216,13 +216,13 @@ function showLevelCompletedImage() {
   levelCompleteDiv.classList.add("level-complete-message");
 
   const levelCompleteImage = document.createElement("img");
-  levelCompleteImage.src = "./assets/whoo.png";
+  levelCompleteImage.src = "../assets/whoo.png";
   levelCompleteImage.alt = "Level Completed";
   levelCompleteDiv.appendChild(levelCompleteImage);
 
   // Create and append the "Restart" image
   const restartImage = document.createElement("img");
-  restartImage.src = "./assets/restart.png";
+  restartImage.src = "../assets/restart.png";
   restartImage.alt = "Restart";
   restartImage.classList.add("restart-image");
   levelCompleteDiv.appendChild(restartImage);
