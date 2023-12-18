@@ -41,7 +41,7 @@ function tileInitialize(selectedMap) {
               color: "red",
               objectType: "block",
 
-              image: createImage("../assets/block.png"),
+              image: createImage("./assets/block.png"),
             })
           );
           break;
@@ -55,7 +55,7 @@ function tileInitialize(selectedMap) {
               },
               color: "green",
               objectType: "restBlock",
-              image: createImage("../assets/block.png"),
+              image: createImage("./assets/block.png"),
             })
           );
           break;
@@ -82,7 +82,7 @@ function tileInitialize(selectedMap) {
               },
               color: "brown",
               objectType: "fireObstacle",
-              image: createImage("../assets/fire.png"),
+              image: createImage("./assets/fire.png"),
             })
           );
           break;
@@ -96,7 +96,7 @@ function tileInitialize(selectedMap) {
               },
               color: "yellow",
               objectType: "checkPoint",
-              image: createImage("../assets/checkpoint.png"),
+              image: createImage("./assets/checkpoint.png"),
             })
           );
           break;
@@ -116,7 +116,7 @@ function tileInitialize(selectedMap) {
               },
               objectType: "enemy",
               // color: "orange",
-              image: createImage("../assets/enemy.png"),
+              image: createImage("./assets/enemy.png"),
             })
           );
           // alert("enemy psuesh");
@@ -131,7 +131,7 @@ function tileInitialize(selectedMap) {
               },
               color: "black",
               objectType: "sizeIncreaser",
-              image: createImage("../assets/size_increaser.png"),
+              image: createImage("./assets/size_increaser.png"),
             })
           );
           break;
@@ -145,7 +145,7 @@ function tileInitialize(selectedMap) {
               },
               color: "purple",
               objectType: "sizeDecreaser",
-              image: createImage("../assets/size_decreaser.png"),
+              image: createImage("./assets/size_decreaser.png"),
             })
           );
           break;
@@ -159,7 +159,7 @@ function tileInitialize(selectedMap) {
               },
               color: "purple",
               objectType: "lifePoint",
-              image: createImage("../assets/life.png"),
+              image: createImage("./assets/life.png"),
             })
           );
           break;
@@ -173,7 +173,7 @@ function tileInitialize(selectedMap) {
               },
               color: "skyblue",
               objectType: "water",
-              image: createImage("../assets/water.png"),
+              image: createImage("./assets/water.png"),
             })
           );
           break;
@@ -187,7 +187,7 @@ function tileInitialize(selectedMap) {
               },
               color: "skyblue",
               objectType: "levelCompleted",
-              image: createImage("../assets/levelComplete.png"),
+              image: createImage("./assets/levelComplete.png"),
             })
           );
           break;
@@ -201,7 +201,7 @@ function tileInitialize(selectedMap) {
               },
               color: "skyblue",
               objectType: "levelCompleted",
-              image: createImage("../assets/levelComplete.png"),
+              image: createImage("./assets/levelComplete.png"),
             })
           );
           break;

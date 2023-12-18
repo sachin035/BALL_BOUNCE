@@ -140,7 +140,7 @@ for (let i = 0; i < pointEllipse.length; i++) {
 function showLevelFailedImage() {
   if (failureCount < maxFailures) {
     console.log("failed");
-    levelFailedImage.src = "../assets/pop.png";
+    levelFailedImage.src = "./assets/pop.png";
     levelFailedImage.style.display = "block";
     // console.log("before:", failureCount);
     failureCount++;
@@ -148,7 +148,7 @@ function showLevelFailedImage() {
     score.updateScore = 0;
     setTimeout(resetGame, 2000);
   } else if (failureCount >= maxFailures) {
-    levelFailedImage.src = "../assets/level_failed.png";
+    levelFailedImage.src = "./assets/level_failed.png";
     levelFailedImage.style.display = "block";
 
     return;
@@ -216,13 +216,13 @@ function showLevelCompletedImage() {
   levelCompleteDiv.classList.add("level-complete-message");
 
   const levelCompleteImage = document.createElement("img");
-  levelCompleteImage.src = "../assets/whoo.png";
+  levelCompleteImage.src = "./assets/whoo.png";
   levelCompleteImage.alt = "Level Completed";
   levelCompleteDiv.appendChild(levelCompleteImage);
 
   // Create and append the "Restart" image
   const restartImage = document.createElement("img");
-  restartImage.src = "../assets/restart.png";
+  restartImage.src = "./assets/restart.png";
   restartImage.alt = "Restart";
   restartImage.classList.add("restart-image");
   levelCompleteDiv.appendChild(restartImage);
@@ -232,7 +232,7 @@ function showLevelCompletedImage() {
   // });
 
   const menuImage = document.createElement("img");
-  menuImage.src = "../assets/menu.png";
+  menuImage.src = "./assets/menu.png";
   menuImage.alt = "Menu";
   menuImage.classList.add("menu-image");
   levelCompleteDiv.appendChild(menuImage);
