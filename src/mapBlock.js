@@ -11,17 +11,7 @@ class Tile {
     this.velocity = { x: 0, y: 0 };
   }
 
-  // setVelocity(velocityX, velocityY) {
-  //   this.velocity.x = velocityX;
-  //   this.velocity.y = velocityY;
-  // }
-
   draw(ctx) {
-    // ctx.fillStyle = this.color;
-    // ctx.strokeStyle = "black";
-    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    // ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
-
     ctx.drawImage(
       this.image,
       this.position.x,
