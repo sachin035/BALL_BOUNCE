@@ -190,21 +190,21 @@ function tileInitialize(selectedMap) {
             })
           );
           break;
-        case objectMapping.ellipseObstacle:
-          GLOBAL.boundaries.push(
-            new EllipseObstacle({
-              position: {
-                x: Tile.width * j,
-                y: Tile.height * i,
-              },
-              radiusX: 15,
-              radiusY: 50,
-              lineWidth: 8,
-              objectType: "ellipseObstacle",
-              // image: createImage("./assets/levelComplete.png"),
-            })
-          );
-          break;
+        // case objectMapping.ellipseObstacle:
+        //   GLOBAL.boundaries.push(
+        //     new EllipseObstacle({
+        //       position: {
+        //         x: Tile.width * j,
+        //         y: Tile.height * i,
+        //       },
+        //       radiusX: 15,
+        //       radiusY: 50,
+        //       lineWidth: 8,
+        //       objectType: "ellipseObstacle",
+        //       // image: createImage("./assets/levelComplete.png"),
+        //     })
+        //   );
+        //   break;
       }
     });
   });

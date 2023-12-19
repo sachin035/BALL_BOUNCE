@@ -8,9 +8,9 @@ class Score {
   update(ctx) {
     ctx.beginPath();
     ctx.font = "12px 'Nunito', sans-serif";
-    ctx.fillStyle = "yellow";
-    ctx.strokeStyle = "yellow";
-    ctx.fillText("Score :" + this.updateScore, 0, 0);
-    ctx.strokeText("Score :" + this.updateScore, this.x, this.y);
+    ctx.fillStyle = "black";
+    ctx.strokeStyle = "black";
+    ctx.fillText("SCORE :" + this.updateScore, 0, 0);
+    ctx.strokeText("SCORE :" + this.updateScore, this.x, this.y);
   }
 }
