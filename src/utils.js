@@ -1,4 +1,5 @@
 const levelFailedImage = document.getElementById("levelFailedImage");
+const levelCompletedImage = document.getElementById("levelCompletedImage");
 let checkpointPosition = null;
 let failureCount = 0;
 const maxFailures = 3;
@@ -15,6 +16,13 @@ function createImage(src) {
   return img;
 }
 
+function restBlockDetection(ball, row) {
+  return (
+    ball.position.y < row.position.y + row.height &&
+    ball.position.y + ball.radius >= row.position.y
+  );
+}
+
 function collisionDetection(ball, row) {
   const collides =
     ball.position.x < row.position.x + row.width &&
@@ -28,16 +36,12 @@ function collisionDetection(ball, row) {
       if (indexToRemove !== -1) {
         GLOBAL.boundaries.splice(indexToRemove, 1);
       }
-      console.log("count", BALL_COUNT);
+      // console.log("count", BALL_COUNT);
       score.updateScore += 100;
-      BALL_COUNT++;
-      life.ballRemain = BALL_COUNT;
-      console.log(life.ballRemain, BALL_COUNT);
-      // life.update(ctx);
+      life.ballRemain += 1;
+      life.update(ctx);
     }
     if (row.objectType === "checkPoint") {
-      // console.log(row.position.x);
-      // console.log(row.position.y);
       const checkpointX = GLOBAL.boundaries.indexOf(row);
 
       const checkpointPosition = { x: checkpointX, y: row.position.y };
@@ -67,17 +71,32 @@ function objectDetection(a, b) {
 }
 const pointEllipse = [];
 
-function boundingPoint() {
-  for (let theta = 0; theta <= 2 * Math.PI; theta += 0.0873) {
-    // const boundPointX = ellipse.position.x + ellipse.radiusX * Math.cos(theta);
-    // const boundPointY = ellipse.position.y + ellipse.radiusY * Math.sin(theta);
-    const boundPointX = 400 + 15 * Math.cos(theta);
-    const boundPointY = 300 + 35 * Math.sin(theta);
+for (let theta = 0; theta <= 2 * Math.PI; theta += 0.0873) {
+  //     GLOBAL.boundaries
+  //       .filter((boundary) => {
+  //         console.log(boundary);
+  //         return boundary instanceof EllipseObstacle;
+  //       })
+  //       .forEach((ellipseBoundary) => {
+  //         console.log(ellipseBoundary);
+  //         const boundPointX =
+  //           ellipseBoundary.position.x +
+  //           ellipseBoundary.radiusX * Math.cos(theta);
+  //         const boundPointY =
+  //           ellipseBoundary.position.y +
+  //           ellipseBoundary.radiusY * Math.sin(theta);
+  //         // console.log(ellipseBoundary.position.x);
+  //         pointEllipse.push({ boundPointX, boundPointY });
+  //       });
+  //     // const boundPointX = .position.x + ellipse.radiusX * Math.cos(theta);
+  //     // const boundPointY = ellipse.position.y + ellipse.radiusY * Math.sin(theta);
+  const boundPointX = 400 + 15 * Math.cos(theta);
+  const boundPointY = 300 + 35 * Math.sin(theta);
 
-    pointEllipse.push({ boundPointX, boundPointY });
-  }
+  pointEllipse.push({ boundPointX, boundPointY });
 }
-boundingPoint();
+// }
+// boundingPoint();
 // console.log(pointEllipse);
 
 function ellipseDetection(circle, point) {
@@ -88,18 +107,12 @@ function ellipseDetection(circle, point) {
   return distance <= circle.radius;
 }
 
-// console.log(pointEllipse);
-// console.log(pointCircle);
-
 function showLevelFailedImage() {
   if (failureCount < maxFailures) {
     console.log("failed");
     levelFailedImage.src = "./assets/pop.png";
     levelFailedImage.style.display = "block";
-
-    // console.log("before:", failureCount);
     failureCount++;
-    // console.log("after:", failureCount);
     score.updateScore = 0;
     audioScreen.pause();
     audioGameover.play();
@@ -112,15 +125,10 @@ function showLevelFailedImage() {
     return;
   }
 
-  if (BALL_COUNT > 0) {
-    BALL_COUNT--;
-    // console.log(BALL_COUNT);
-    life.ballRemain = BALL_COUNT;
+  if (life.ballRemain > 0) {
+    life.ballRemain -= 1;
+    life.update(ctx);
   }
-
-  // life.update(ctx);
-  // ball.velocity.x = 0;
-  // ball.velocity.y = 0;
 }
 
 function resetGame() {
@@ -173,36 +181,51 @@ function resetGame() {
 // console.log(ball.position.x)
 
 function showLevelCompletedImage() {
-  const levelCompleteDiv = document.createElement("div");
-  levelCompleteDiv.id = "level-complete-message";
-  levelCompleteDiv.classList.add("level-complete-message");
-
-  const levelCompleteImage = document.createElement("img");
-  levelCompleteImage.src = "./assets/whoo.png";
-  levelCompleteImage.alt = "Level Completed";
-  levelCompleteDiv.appendChild(levelCompleteImage);
-
-  // Create and append the "Restart" image
-  const restartImage = document.createElement("img");
-  restartImage.src = "./assets/restart.png";
-  restartImage.alt = "Restart";
-  restartImage.classList.add("restart-image");
-  levelCompleteDiv.appendChild(restartImage);
-
-  // restartImage.addEventListener("click", function () {
-  //   tileInitialize(); // Replace with your restart function
-  // });
-
-  const menuImage = document.createElement("img");
-  menuImage.src = "./assets/menu.png";
-  menuImage.alt = "Menu";
-  menuImage.classList.add("menu-image");
-  levelCompleteDiv.appendChild(menuImage);
-  document.body.appendChild(levelCompleteDiv);
-
-  restartImage.addEventListener("click", function () {
-    console.log("listened");
-    tileInitialize(selectedMap);
-    levelCompleteDiv.style.display = "none";
-  });
+  levelCompletedImage.src = "./assets/whoo.png";
+  levelCompletedImage.style.display = "block";
+  audioScreen.pause();
 }
+
+// function showLevelCompletedImage() {
+//   const levelCompleteDiv = document.createElement("div");
+//   levelCompleteDiv.id = "level-complete-message";
+//   levelCompleteDiv.classList.add("level-complete-message");
+
+//   const levelCompleteImage = document.createElement("img");
+//   levelCompleteImage.src = "./assets/whoo.png";
+//   levelCompleteImage.alt = "Level Completed";
+//   levelCompleteDiv.appendChild(levelCompleteImage);
+
+//   // Create and append the "Restart" image
+//   const restartImage = document.createElement("img");
+//   restartImage.src = "./assets/restart.png";
+//   restartImage.alt = "Restart";
+//   restartImage.classList.add("restart-image");
+//   levelCompleteDiv.appendChild(restartImage);
+
+//   const menuImage = document.createElement("img");
+//   menuImage.src = "./assets/menu.png";
+//   menuImage.alt = "Menu";
+//   menuImage.classList.add("menu-image");
+//   levelCompleteDiv.appendChild(menuImage);
+//   document.body.appendChild(levelCompleteDiv);
+
+//   restartImage.addEventListener("click", function () {
+//     console.log("listened");
+
+//     levelCompleteDiv.style.display = "none";
+//     tileInitialize(selectedMap);
+//     game();
+//     isLevelCompleted = false;
+//     console.log(levelCompleteDiv);
+//   });
+
+//   // menuImage.addEventListener("click", function () {
+//   //   console.log("listened");
+//   //   levelCompleteDiv.style.display = "none";
+//   //   tileInitialize(selectedMap);
+//   //   game();
+
+//   //   console.log(levelCompleteDiv);
+//   // });
+// }

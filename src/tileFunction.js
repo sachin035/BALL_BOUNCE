@@ -208,4 +208,5 @@ function tileInitialize(selectedMap) {
       }
     });
   });
+  console.log(GLOBAL.boundaries);
 }

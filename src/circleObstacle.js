@@ -8,7 +8,7 @@ class EllipseObstacle {
     // console.log(this);
   }
 
-  draw(ctx, rotationAngle) {
+  draw(ctx) {
     // ctx.save();
     // ctx.translate(this.position.x, this.position.y);
 
@@ -27,7 +27,8 @@ class EllipseObstacle {
     ctx.lineWidth = this.lineWidth;
     ctx.strokeStyle = "yellow";
     ctx.stroke();
-    //ctx.restore();
+    ctx.closePath();
+    // ctx.restore();
     // Draw the inner ellipse
     // ctx.beginPath();
     // ctx.ellipse(
@@ -46,42 +47,39 @@ class EllipseObstacle {
     //ctx.stroke();
   }
 
-  pointFromAngle(a) {
-    const c = Math.cos(a);
-    const s = Math.sin(a);
-    const ta = s / c;
-    const tt = (ta * this.radiusX) / this.radiusY;
-    const d = 1.0 / Math.sqrt(1.0 + tt * tt);
-    const x = this.position.x + Math.sign(c) * this.radiusX * d;
-    const y = this.position.y - Math.sign(s) * this.radiusY * tt * d;
-    return { x, y };
-  }
+  // pointFromAngle(a) {
+  //   const c = Math.cos(a);
+  //   const s = Math.sin(a);
+  //   const ta = s / c;
+  //   const tt = (ta * this.radiusX) / this.radiusY;
+  //   const d = 1.0 / Math.sqrt(1.0 + tt * tt);
+  //   const x = this.position.x + Math.sign(c) * this.radiusX * d;
+  //   const y = this.position.y - Math.sign(s) * this.radiusY * tt * d;
+  //   return { x, y };
+  // }
+
+  // detectCollisionWithEllipse(entities) {
+  //   entities.forEach((entity) => {
+  //     if (
+  //       entity.objectType !== "ellipseObstacle" &&
+  //       ellipseDetection(this, entity)
+  //     ) {
+  //       //       // console.log("Collision detected between enemy and other entity:");
+  //       //       console.log("hurray");
+  //       function boundingPoint() {
+  //         for (let theta = 0; theta <= 2 * Math.PI; theta += 0.0873) {
+  //           const boundPointX =
+  //             this.position.x + this.radiusX * Math.cos(theta);
+  //           const boundPointY =
+  //             this.position.y + this.radiusY * Math.sin(theta);
+  //           // const boundPointX = 400 + 15 * Math.cos(theta);
+  //           // const boundPointY = 300 + 35 * Math.sin(theta);
+
+  //           pointEllipse.push({ boundPointX, boundPointY });
+  //         }
+  //       }
+  //       boundingPoint();
+  //     }
+  //   });
+  // }
 }
-
-// class Circle {
-//   constructor({ position, width, height, image, color, objectType }) {
-//     this.position = position;
-//     this.width = width;
-//     this.height = height;
-
-//     this.image = image;
-//     this.color = color;
-//     this.objectType = objectType;
-//   }
-
-//   draw(ctx) {
-//     // console.log(this);
-
-//     // ctx.fillStyle = this.color;
-//     // ctx.strokeStyle = "black";
-//     // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-//     // ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
-//     ctx.drawImage(
-//       this.image,
-//       this.position.x,
-//       this.position.y,
-//       this.width,
-//       this.height
-//     );
-//   }
-// }

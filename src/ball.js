@@ -52,14 +52,11 @@ class Ball {
 
   move() {
     if (keys.D) {
-      this.position.x += 5;
-      // this.distanceTravel += 5;
-      // console.log("distance:", this.distanceTravel);
-      // if (canvas.width) \
+      this.position.x += 3;
       this.shouldPanCameraToTheLeft();
     }
     if (keys.A) {
-      this.position.x -= 5;
+      this.position.x -= 3;
       this.shouldPanCameraToTheRight();
     }
     if (this.position.y + this.radius >= canvas.height) {
@@ -83,7 +80,7 @@ class Ball {
     this.camerabox.position.x = this.position.x - this.camerabox.width / 2;
     this.camerabox.position.y = this.position.y - this.camerabox.height / 2;
 
-    ctx.fillStyle = "rgba(0,0,255,0.2)";
+    ctx.fillStyle = "rgba(0,0,255,0.001)";
     ctx.fillRect(
       this.camerabox.position.x,
       this.camerabox.position.y,
@@ -95,19 +92,14 @@ class Ball {
   shouldPanCameraToTheLeft() {
     let cameraboxRightSide = this.camerabox.position.x + this.camerabox.width;
     if (cameraboxRightSide >= canvas.width) {
-      // console.log("translateright");
-      // console.log(this.position.x);
       if (this.position.x >= 725) {
         this.position.x = 725;
       }
       GLOBAL.boundaries.forEach((tile) => {
         // console.log(tile);
         if (tile instanceof Tile || tile instanceof Enemy) {
-          // console.log(tile.position.x);
-          // console.log(this.velocity.x);
           tile.velocity.x = this.velocity.x;
           tile.position.x += tile.velocity.x;
-          // console.log(tile.position.x);
         }
       });
 
@@ -123,20 +115,13 @@ class Ball {
   shouldPanCameraToTheRight() {
     let cameraboxLeftSide = this.camerabox.position.x;
     if (cameraboxLeftSide <= 0) {
-      // console.log("translateleft");
-      // console.log(this.position.x);
       if (this.position.x <= 475) {
         this.position.x = 475;
       }
       GLOBAL.boundaries.forEach((tile) => {
-        // if (tile.color === "orange") {
-        //   // console.log({ enemiesss: tile });
-        // }
-        // console.log(tile);
         if (tile instanceof Tile || tile instanceof Enemy) {
           tile.velocity.x = this.velocity.x;
           tile.position.x -= tile.velocity.x;
-          // console.log(tile.position.x);
         }
       });
     }
